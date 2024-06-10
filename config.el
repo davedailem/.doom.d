@@ -283,7 +283,7 @@
 
 ;;____________________________________________________________
 ;; lsp ignore
-(add-to-list 'lsp-file-watch-ignored-directories
-             '(".idea" "/opt/homebrew" "node_modules"
-               ".git" "build" "_build" "postgres-data")
-             )
+;; (add-to-list 'lsp-file-watch-ignored-directories
+;;              '(".idea" "/opt/homebrew" "node_modules"
+;;                ".git" "build" "_build" "postgres-data")
+;;              )
