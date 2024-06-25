@@ -17,6 +17,9 @@
 ;; Start fullscreen
 (add-hook 'window-setup-hook #'toggle-frame-fullscreen)
 
+;; don't yank on paste
+(setq-default evil-kill-on-visual-paste nil)
+
 ;; Remove duplicates in commands history
 (setq history-delete-duplicates t)
 
@@ -287,3 +290,7 @@
 ;;              '(".idea" "/opt/homebrew" "node_modules"
 ;;                ".git" "build" "_build" "postgres-data")
 ;;              )
+
+;; disable copilot warning
+(after! copilot
+  (setq copilot-indent-offset-warning-disable t))
