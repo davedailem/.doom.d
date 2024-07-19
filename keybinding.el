@@ -25,9 +25,10 @@
       :desc "mark url"                  :nv "u" #'er/mark-url
       :desc "mark email"                :nv "e" #'er/mark-email
       :desc "mark symbol"               :nv "s" #'er/mark-symbol
-      :desc "mark outside quotes"       :nv "q" #'er/mark-outside-quotes
-      :desc "mark inside quotes"        :nv "i" #'er/mark-inside-quotes
+      :desc "mark quotes"               :nv "q" #'er/mark-outside-quotes
+      :desc "mark inside quotes"        :nv "i q" #'er/mark-inside-quotes
       :desc "mark method call"          :nv "m" #'er/mark-method-call
+      :desc "mark inside parens"        :nv "i p" #'er/mark-inside-pairs
       )
 
 (map! :leader
