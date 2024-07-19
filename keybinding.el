@@ -14,10 +14,26 @@
       :nvig "C-<backspace>" #'my/kill-backward-smart)
 
 (map! :leader
+      "m" nil
+      :prefix ("m" . "er/mark")
+      :desc "mark whole buffer"         :nv "a" #'mark-whole-buffer
+      :desc "mark paragraph"            :nv "p" #'er/mark-paragraph
+      :desc "mark word"                 :nv "w" #'er/mark-word
+      :desc "mark sentence"             :nv "s" #'er/mark-sentence
+      :desc "mark function"             :nv "f" #'er/mark-defun
+      :desc "mark comment"              :nv "c" #'er/mark-comment
+      :desc "mark url"                  :nv "u" #'er/mark-url
+      :desc "mark email"                :nv "e" #'er/mark-email
+      :desc "mark symbol"               :nv "s" #'er/mark-symbol
+      :desc "mark outside quotes"       :nv "q" #'er/mark-outside-quotes
+      :desc "mark inside quotes"        :nv "i" #'er/mark-inside-quotes
+      :desc "mark method call"          :nv "m" #'er/mark-method-call
+      )
+
+(map! :leader
       :desc "other window"              :nv     "RET"   #'other-window
       :desc "open line"                 :nv     "i n"   #'my/open-line
       :desc "yank from kill-ring"       :nvig   "i k"   #'(lambda () (interactive) (yank-pop))
-      :desc "mark word at point"        :nvg    "m"     #'er/mark-word
       :desc "increase-height 10"        :nv     "w +"   #'(lambda () (interactive) (evil-window-increase-height 10))
       :desc "decrease-height 10"        :nv     "w -"   #'(lambda () (interactive) (evil-window-decrease-height 10))
       :desc "format whole buffer"       :nv     "c f"   #'lsp-format-region
