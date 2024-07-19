@@ -17,16 +17,16 @@
       :desc "other window"              :nv     "RET"   #'other-window
       :desc "open line"                 :nv     "i n"   #'my/open-line
       :desc "yank from kill-ring"       :nvig   "i k"   #'(lambda () (interactive) (yank-pop))
-      :desc "mark symbol at point"      :nvg    "m"     #'er/mark-symbol
+      :desc "mark word at point"        :nvg    "m"     #'er/mark-word
       :desc "increase-height 10"        :nv     "w +"   #'(lambda () (interactive) (evil-window-increase-height 10))
       :desc "decrease-height 10"        :nv     "w -"   #'(lambda () (interactive) (evil-window-decrease-height 10))
       :desc "format whole buffer"       :nv     "c f"   #'lsp-format-region
-      :desc "Find usage"                :nv     "c u" #'lsp-ui-peek-find-references
-      :desc "Glance"                    :nv     "c g" #'lsp-ui-doc-glance
-      :desc "Jump backward"             :nv     "c h" #'lsp-ui-peek-jump-backward
-      :desc "Jump forward"              :nv     "c l" #'lsp-ui-peek-jump-forward
-      :desc "Format region"             :nv     "c f" #'lsp-format-region
-      :desc "Show docs"                 :nv     "c s" #'lsp-ui-doc-show
+      :desc "Find usage"                :nv     "c u"   #'lsp-ui-peek-find-references
+      :desc "Glance"                    :nv     "c g"   #'lsp-ui-doc-glance
+      :desc "Jump backward"             :nv     "c h"   #'lsp-ui-peek-jump-backward
+      :desc "Jump forward"              :nv     "c l"   #'lsp-ui-peek-jump-forward
+      :desc "Format region"             :nv     "c f"   #'lsp-format-region
+      :desc "Show docs"                 :nv     "c s"   #'lsp-ui-doc-show
       )
 
 (map! :map dap-mode-map
