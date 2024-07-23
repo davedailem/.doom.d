@@ -294,3 +294,6 @@
 ;; disable copilot warning
 (after! copilot
   (setq copilot-indent-offset-warning-disable t))
+
+;; add clipboard to the kill-ring before next kill
+(setq save-interprogram-paste-before-kill t)
