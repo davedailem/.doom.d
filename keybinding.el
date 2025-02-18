@@ -16,7 +16,7 @@
 (map! :leader
       "m" nil
       :prefix ("m" . "er/mark")
-      :desc "Mark buffer"         :nv "a" #'mark-whole-buffer
+      :desc "Mark buffer"               :nv "a" #'mark-whole-buffer
       :desc "Mark paragraph"            :nv "p" #'er/mark-paragraph
       :desc "Mark word"                 :nv "w" #'er/mark-word
       :desc "Mark sentence"             :nv "s" #'er/mark-sentence
@@ -32,14 +32,27 @@
       )
 
 (map! :leader
-      :desc "Other window"              :nv     "RET"   #'other-window
-      :desc "Open line"                 :nv     "i n"   #'my/open-line
-      :desc "Yank kill-ring"       :nvig   "i k"   #'(lambda () (interactive) (yank-pop))
-      :desc "Increase-height 10"        :nv     "w +"   #'(lambda () (interactive) (evil-window-increase-height 10))
-      :desc "Decrease-height 10"        :nv     "w -"   #'(lambda () (interactive) (evil-window-decrease-height 10))
-      :desc "Jump backward"             :nv     "c h"   #'evil-jump-backward
-      :desc "Jump forward"              :nv     "c l"   #'evil-jump-forward
-      :desc "Format buffer"             :nv     "c b"   #'+format/buffer
-      :desc "Format region"             :nv     "c r"   #'+format/region
+      :desc "Other window"              :nv "RET"   #'other-window
+      :desc "Open line"                 :nv "i n"   #'my/open-line
+      :desc "Yank kill-ring"            :nv "i k"   #'(lambda () (interactive) (yank-pop))
+      :desc "Increase-height 10"        :nv "w +"   #'(lambda () (interactive) (evil-window-increase-height 10))
+      :desc "Decrease-height 10"        :nv "w -"   #'(lambda () (interactive) (evil-window-decrease-height 10))
+      :desc "Jump backward"             :nv "c h"   #'evil-jump-backward
+      :desc "Jump forward"              :nv "c l"   #'evil-jump-forward
+      :desc "Format buffer"             :nv "c b"   #'+format/buffer
+      :desc "Format region"             :nv "c r"   #'+format/region
       )
 
+
+;; remove some keybindings in SPC c
+(map! :leader
+      :prefix ("c" . "code")
+      "a" nil
+      "c" nil
+      "C" nil
+      "e" nil
+      "E" nil
+      "s" nil
+      "w" nil
+      "W" nil
+      )
