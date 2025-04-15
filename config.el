@@ -64,6 +64,10 @@
   ;; (setq lsp-diagnostics-provider :none)
   (setq lsp-headerline-breadcrumb-enable t))
 
+;; enable evil escape
+(after! evil-escape
+  (setq evil-escape-key-sequence "jk"))
+
 ;;____________________________________________________________
 ;;lsp-headerline remove underlines
 ;; generated automatically by running the following commands
