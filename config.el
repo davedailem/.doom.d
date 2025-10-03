@@ -282,3 +282,6 @@
       (push-mark pos1 t t)
       (goto-char pos2)
       (setq transient-mark-mode  (cons 'only transient-mark-mode)))))
+
+(after! (:and treemacs ace-window)
+  (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers)))

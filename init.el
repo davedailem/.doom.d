@@ -25,10 +25,10 @@
        ;;neotree
        ophints
        (popup +defaults)
-       ;;treemacs
-       ;;tree-sitter
+       treemacs
+       tree-sitter
        ;;unicode
-       ;;tabs
+       tabs
        (vc-gutter +diff-hl +pretty)
        (window-select +switch-window)   ; visually switch windows
        workspaces
@@ -71,7 +71,7 @@
        ;;grammar
 
        :tools
-       (lsp +eglot +peek)
+       (lsp +eglot)
        tree-sitter
        ansible
        ;;(debugger +lsp)
@@ -134,7 +134,7 @@
        ;;nim
        ;;nix
        ;;ocaml
-       (org +dragndrop +roam2 +present)
+       (org +dragndrop +roam +present)
        ;;perl
        ;;php
        ;;plantuml
