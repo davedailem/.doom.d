@@ -73,7 +73,7 @@
        :tools
        (lsp +eglot)
        tree-sitter
-       ansible
+       ;;ansible
        ;;(debugger +lsp)
        direnv
        ;;docker
@@ -144,7 +144,7 @@
        ;;racket
        ;;rest
        ;;ruby
-       (rust +lsp)
+       ;;(rust +lsp)
        ;;scala
        ;;(scheme +guile)
        sh
