@@ -5,8 +5,8 @@
 
 ;; doom theme (doom-one, doom-dracula)
 (setq doom-theme 'doom-dracula
-      doom-font (font-spec :family "JetBrains Mono" :size 14 :weight 'light)
-      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 14))
+      doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :weight 'light)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 14))
 
 ;; Password cache
 (setq password-cache t)
