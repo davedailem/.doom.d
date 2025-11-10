@@ -61,3 +61,5 @@
 (package! kubernetes
   :recipe (:host github :repo "kubernetes-el/kubernetes-el" :files ("*.el")))
 (package! protobuf-mode)
+(package! dag-draw
+  :recipe (:host github :repo "emacsmirror/dag-draw" :files ("*.el")))

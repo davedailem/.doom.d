@@ -285,3 +285,12 @@
 
 (after! (:and treemacs ace-window)
   (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers)))
+
+;;____________________________________________________________
+;; daw-draw 
+(setq my/graph (dag-draw-create-graph))
+;; (setq dag-draw-default-node-separation 30)
+;; (setq dag-draw-default-rank-separation 50)
+(setq dag-draw-ascii-node-separation 10)
+(dag-draw-render-graph my/graph 'ascii)
+(dag-draw-layout-graph my/graph)
