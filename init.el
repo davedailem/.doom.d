@@ -134,7 +134,7 @@
        ;;nim
        ;;nix
        ;;ocaml
-       (org +dragndrop +roam +present)
+       (org +dragndrop +roam +present +pretty)
        ;;perl
        ;;php
        ;;plantuml

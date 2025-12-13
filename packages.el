@@ -61,3 +61,4 @@
 (package! kubernetes
   :recipe (:host github :repo "kubernetes-el/kubernetes-el" :files ("*.el")))
 (package! protobuf-mode)
+(package! copilot-chat)
