@@ -167,6 +167,7 @@
   :config
   (setq
    ;; Edit settings
+   org-modern-star 'replace ;; round bullet points
    org-auto-align-tags nil
    org-tags-column 0
    org-fold-catch-invisible-edits 'show-and-error
@@ -209,14 +210,6 @@
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
-;;____________________________________________________________
-;; eglot-java
-(use-package! eglot-java
-  :hook (java-mode . eglot-java-mode))
-
-;;____________________________________________________________
-;; load key bindings
-(load-file "~/.doom.d/keybinding.el")
 
 ;;_________________________________________________________
 ;; some helper functions
@@ -286,3 +279,6 @@
 (after! (:and treemacs ace-window)
   (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers)))
 
+;;____________________________________________________________
+;; load key bindings
+(load-file "~/.doom.d/keybinding.el")
