@@ -124,7 +124,7 @@
       org-roam-db-location (file-name-concat org-directory ".org-roam.db")
       org-roam-dailies-directory (file-name-concat org-directory "journal/")
       org-archive-location (file-name-concat org-directory ".archive/%s::")
-      org-agenda-files (list org-directory))
+      org-agenda-files (list (file-name-concat org-directory "org-agenda")))
 
 (after! org
   (setq org-startup-folded 'show2levels
