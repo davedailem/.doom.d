@@ -282,3 +282,17 @@
 ;;____________________________________________________________
 ;; load key bindings
 (load-file "~/.doom.d/keybinding.el")
+
+;;
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (with-eval-after-load 'lsp-mode
+    (add-to-list 'lsp-language-id-configuration '(cue-mode . "cue"))
+    (lsp-register-client (make-lsp-client
+                          :new-connection (lsp-stdio-connection (list "cue" "lsp" "serve"))
+                          :activation-fn (lsp-activate-on "cue")
+                          :server-id 'cuelsp))
+    )
+  :hook ((cue-mode . lsp-deferred))
+  )
