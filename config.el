@@ -283,8 +283,8 @@
 ;; load key bindings
 (load-file "~/.doom.d/keybinding.el")
 
-;;
-(use-package lsp-mode
+;; add cue-mode to lsp
+(use-package! lsp-mode
   :commands (lsp lsp-deferred)
   :init
   (with-eval-after-load 'lsp-mode
@@ -296,3 +296,8 @@
     )
   :hook ((cue-mode . lsp-deferred))
   )
+
+;; enable magit-todos mode
+(use-package! magit-todos
+  :after magit
+  :config (magit-todos-mode 1))

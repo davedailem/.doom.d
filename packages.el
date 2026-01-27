@@ -50,16 +50,10 @@
                                         ;(unpin! t)
 
 (package! org-roam-ui)
-(package! google-c-style)
-(package! lsp-tailwindcss
-  :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
-(package! kubernetes)
 (package! org-modern)
 (package! copilot
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
-(package! eglot-java)
-(package! kubernetes
-  :recipe (:host github :repo "kubernetes-el/kubernetes-el" :files ("*.el")))
 (package! protobuf-mode)
 (package! copilot-chat)
 (package! cue-mode)
+(package! magit-todos)
