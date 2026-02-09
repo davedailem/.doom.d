@@ -57,3 +57,4 @@
 (package! copilot-chat)
 (package! cue-mode)
 (package! magit-todos)
+(package! breadcrumb)

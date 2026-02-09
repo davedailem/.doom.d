@@ -301,3 +301,6 @@
 (use-package! magit-todos
   :after magit
   :config (magit-todos-mode 1))
+
+;; enable breadcrumb mode
+(use-package! breadcrumb)
