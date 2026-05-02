@@ -56,6 +56,9 @@
 ;; add clipboard to the kill-ring before next kill
 (setq save-interprogram-paste-before-kill t)
 
+;; No comments on new lines when pressing RET
+(setq +default-want-RET-continue-comments nil)
+
 ;;____________________________________________________________
 ;; lsp configs
 (after! lsp
@@ -304,3 +307,9 @@
 
 ;; enable breadcrumb mode
 (use-package! breadcrumb)
+
+;; enable claude-code-ide
+(use-package! claude-code-ide
+  ;; :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+  :config
+  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools

@@ -58,3 +58,5 @@
 (package! cue-mode)
 (package! magit-todos)
 (package! breadcrumb)
+(package! claude-code-ide
+  :recipe (:host github :repo "manzaltu/claude-code-ide.el"))
