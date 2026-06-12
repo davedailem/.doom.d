@@ -7,7 +7,7 @@
        :ui
        (doom +tabs)
        modeline
-       doom-dashboard
+       dashboard
        doom-quit
        hl-todo
        indent-guides
@@ -47,7 +47,8 @@
        ;;grammar
 
        :tools
-       (lsp +eglot)
+       ;; (lsp +eglot)
+       (lsp +lsp-ui +peek)
        tree-sitter
        direnv
        editorconfig        

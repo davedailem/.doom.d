@@ -41,6 +41,7 @@
       :desc "Jump forward"              :nv "c l"   #'evil-jump-forward
       :desc "Format buffer"             :nv "c b"   #'+format/buffer
       :desc "Format region"             :nv "c r"   #'+format/region
+      :desc "Open Ghostty term"         :nv "o T"   #'ghostel
       )
 
 

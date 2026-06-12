@@ -60,3 +60,5 @@
 (package! breadcrumb)
 (package! claude-code-ide
   :recipe (:host github :repo "manzaltu/claude-code-ide.el"))
+(package! ghostel
+  :recipe (:host github :repo "dakra/ghostel"))
