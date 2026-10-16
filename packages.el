@@ -51,12 +51,17 @@
 
 (package! org-roam-ui)
 (package! org-modern)
-(package! copilot
-  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
 (package! protobuf-mode)
-(package! copilot-chat)
 (package! cue-mode)
 (package! magit-todos)
 (package! breadcrumb)
-(package! claude-code-ide
-  :recipe (:host github :repo "manzaltu/claude-code-ide.el"))
+(package! polymode)
+(package! poly-markdown)
+;; AI packages
+;; ------------
+(package! copilot
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+(package! shell-maker)
+(package! acp)
+(package! agent-shell)
+;; ------------

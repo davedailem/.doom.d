@@ -40,19 +40,6 @@
       :desc "Jump backward"             :nv "c h"   #'evil-jump-backward
       :desc "Jump forward"              :nv "c l"   #'evil-jump-forward
       :desc "Format buffer"             :nv "c b"   #'+format/buffer
-      :desc "Format region"             :nv "c r"   #'+format/region
+      :desc "Format region"             :nv "c r"   #'agent-shell-send-region
       )
 
-
-;; remove some keybindings in SPC c
-(map! :leader
-      :prefix ("c" . "code")
-      "a" nil
-      "c" nil
-      "C" nil
-      "e" nil
-      "E" nil
-      "s" nil
-      "w" nil
-      "W" nil
-      )

@@ -11,7 +11,9 @@
      ("\\.\\(gz\\|Z\\|bz\\|bz2\\|xz\\|gpg\\)\\'" . no-conversion)
      ("\\.\\(jpe?g\\|png\\|gif\\|tiff?\\|p[bpgn]m\\)\\'" . no-conversion)
      ("\\.pdf\\'" . no-conversion) ("/#[^/]+#\\'" . utf-8-emacs-unix)))
+ '(go-ts-indent-offset 4)
  '(go-ts-mode-indent-offset 4)
+ '(safe-local-variable-values '((lsp-go-build-flags . ["-tags=local"])))
  '(warning-suppress-types '((lsp-mode) (defvaralias))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

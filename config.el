@@ -300,6 +300,11 @@
   :hook ((cue-mode . lsp-deferred))
   )
 
+(after! lsp-mode
+  (setq lsp-headerline-breadcrumb-enable t
+        lsp-headerline-breadcrumb-icons-enable t
+        lsp-headerline-breadcrumb-segments '(project file symbols)))
+
 ;; enable magit-todos mode
 (use-package! magit-todos
   :after magit
@@ -308,8 +313,6 @@
 ;; enable breadcrumb mode
 (use-package! breadcrumb)
 
-;; enable claude-code-ide
-(use-package! claude-code-ide
-  ;; :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+(require 'acp)
+(require 'agent-shell)
+
