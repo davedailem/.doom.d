@@ -17,7 +17,6 @@
        (workspaces +tabs)
        (emoji +unicode)
        treemacs
-       tree-sitter
        (window-select +switch-window)   
 
        :editor
@@ -42,7 +41,6 @@
        vterm
 
        :checkers
-       syntax
        (syntax +childframe)
        ;;grammar
 
@@ -65,11 +63,10 @@
        :lang
        emacs-lisp
        (javascript +lsp +tree-sitter)
-       (json +tree-sitter)
        (go +lsp +tree-sitter)
        (markdown +tree-sitter)
        ;;(nix +lsp +tree-sitter)
-       (org +dragndrop +roam2 +pretty +forge +jupyter)
+       (org +dragndrop +roam2 +forge +jupyter)
        (python +lsp +tree-sitter +pyright)
        (sh +fish +lsp)
        (web +lsp +tree-sitter)

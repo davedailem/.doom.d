@@ -33,6 +33,7 @@
 
 (map! :leader
       :desc "Other window"              :nv "RET"   #'other-window
+      :desc "Other frame"               :nv "\\"     #'other-frame
       :desc "Open line"                 :nv "i n"   #'my/open-line
       :desc "Yank kill-ring"            :nv "i k"   #'(lambda () (interactive) (yank-pop))
       :desc "Increase-height 10"        :nv "w +"   #'(lambda () (interactive) (evil-window-increase-height 10))

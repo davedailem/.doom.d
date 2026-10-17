@@ -3,117 +3,98 @@
 ;;____________________________________________________________
 ;;
 
-;; doom theme (doom-one, doom-dracula)
-(setq doom-theme 'doom-dracula
-      doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :weight 'light)
-      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 14))
-
-;; Password cache
-(setq password-cache t)
-(setq password-cache-expiry nil)
-
-;; Start fullscreen
-(add-hook 'window-setup-hook #'toggle-frame-fullscreen)
-
-;; Remove duplicates in commands history
-(setq history-delete-duplicates t)
-
-;; For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
-
-;; tell projectile not to register projects automatically
-(setq projectile-track-known-projects-automatically nil)
-
 ;; Minimal UI
-(setq menu-bar-mode nil)
-(setq tool-bar-mode nil)
-(setq scroll-bar-mode nil)
-
-;; don't yank on paste
-(setq evil-kill-on-visual-paste nil)
-
-;; set auth-sources
-(setq auth-sources
-      '((:source "~/.authinfo.gpg")))
-
-;; the default is too high and makes vterm to slow
-(setq vterm-timer-delay 0.01)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; Prevents some cases of Emacs flickering.
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+
+;; Start fullscreen
+;; (add-hook 'window-setup-hook #'toggle-frame-fullscreen)
 
 ;; Manual auto complete
 ;; (after! corfu
 ;;   (setq corfu-auto nil))
 
-;; An evil mode indicator is redundant with cursor shape
-(setq doom-modeline-modal nil)
+(setq
+ ;; theme and fonts (doom-one, doom-dracula)
+ doom-theme 'doom-dracula
+ doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :weight 'light)
+ doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
 
-;; Focus new window after splitting
-(setq evil-split-window-below t
-      evil-vsplit-window-right t)
+ ;; For relative line numbers, set this to `relative'.
+ display-line-numbers-type t
 
-;; add clipboard to the kill-ring before next kill
-(setq save-interprogram-paste-before-kill t)
+ ;; Password cache and auth
+ password-cache t
+ password-cache-expiry nil
+ auth-sources '((:source "~/.authinfo.gpg"))
 
-;; No comments on new lines when pressing RET
-(setq +default-want-RET-continue-comments nil)
+ ;; Remove duplicates in commands history
+ history-delete-duplicates t
 
-;;____________________________________________________________
-;; lsp configs
-(after! lsp
-  :config
-  ;; disable code underlines/flychecks
-  ;; (setq lsp-diagnostics-provider :none)
-  (setq lsp-headerline-breadcrumb-enable t))
+ ;; tell projectile not to register projects automatically
+ projectile-track-known-projects-automatically nil
+
+ ;; don't yank on paste
+ evil-kill-on-visual-paste nil
+
+ ;; Focus new window after splitting
+ evil-split-window-below t
+ evil-vsplit-window-right t
+
+ ;; add clipboard to the kill-ring before next kill
+ save-interprogram-paste-before-kill t
+
+ ;; No comments on new lines when pressing RET
+ +default-want-RET-continue-comments nil
+
+ ;; the default is too high and makes vterm to slow
+ vterm-timer-delay 0.01
+
+ ;; An evil mode indicator is redundant with cursor shape
+ doom-modeline-modal nil
+
+ ;; ibuffer: no prompts
+ ibuffer-expert t
+
+ ;; clangd
+ lsp-clients-clangd-args
+ '("-j=3"
+   "--background-index"
+   "--clang-tidy"
+   "--completion-style=detailed"
+   "--header-insertion=never"
+   "--header-insertion-decorators=0"))
+
+(setq-default indent-tabs-mode nil)
 
 ;; enable evil escape
 (after! evil-escape
   (setq evil-escape-key-sequence "jk"))
 
 ;;____________________________________________________________
-;;lsp-headerline remove underlines
-;; generated automatically by running the following commands
-;; M-x -> list-faces-display
-;; search for "lsp-headerline"
-;; click on the face hyperlink
-;; turn off underline
-;; the output is saved here to make it permanent.
-(custom-set-faces
- '(lsp-headerline-breadcrumb-path-error-face ((t (:inherit lsp-headerline-breadcrumb-path-face :underline nil))))
- '(lsp-headerline-breadcrumb-path-hint-face ((t (:inherit lsp-headerline-breadcrumb-path-face :underline nil))))
- '(lsp-headerline-breadcrumb-path-info-face ((t (:inherit lsp-headerline-breadcrumb-path-face :underline nil))))
- '(lsp-headerline-breadcrumb-path-warning-face ((t (:inherit lsp-headerline-breadcrumb-path-face :underline nil))))
- '(lsp-headerline-breadcrumb-path-error-face ((t (:inherit lsp-headerline-breadcrumb-path-face :underline nil))))
- '(lsp-headerline-breadcrumb-path-hint-face ((t (:inherit lsp-headerline-breadcrumb-path-face :underline nil))))
- '(lsp-headerline-breadcrumb-path-info-face ((t (:inherit lsp-headerline-breadcrumb-path-face :underline nil))))
- '(lsp-headerline-breadcrumb-path-warning-face ((t (:inherit lsp-headerline-breadcrumb-path-face :underline nil))))
- '(lsp-headerline-breadcrumb-symbols-error-face ((t (:inherit lsp-headerline-breadcrumb-symbols-face :underline nil))))
- '(lsp-headerline-breadcrumb-symbols-hint-face ((t (:inherit lsp-headerline-breadcrumb-symbols-face :underline nil))))
- '(lsp-headerline-breadcrumb-symbols-info-face ((t (:inherit lsp-headerline-breadcrumb-symbols-face :underline nil))))
- '(lsp-headerline-breadcrumb-symbols-warning-face ((t (:inherit lsp-headerline-breadcrumb-symbols-face :underline nil)))))
-
-;;____________________________________________________________
 ;; modeline configs
-(after! doom-modeline
+(use-package! doom-modeline
+  :hook (doom-modeline-mode . display-time-mode)
+  :custom
+  (line-number-mode nil)
+  (doom-modeline-persp-name t)
+  (doom-modeline-buffer-encoding nil)
+  :config
   (remove-hook 'doom-modeline-mode-hook #'size-indication-mode) ; filesize in modeline
-  (remove-hook 'doom-modeline-mode-hook #'column-number-mode)   ; cursor column in modeline
-  (add-hook 'doom-modeline-mode-hook #'display-time-mode)
-  (setq line-number-mode nil)
-  (setq doom-modeline-persp-name t)
-  (setq doom-modeline-buffer-encoding nil))
+  (remove-hook 'doom-modeline-mode-hook #'column-number-mode))   ; cursor column in modeline
 
 ;;____________________________________________________________
 ;; ibuffer configs
-(setq ibuffer-expert t)  ;; no prompts
-(add-hook 'ibuffer-hook
-          (lambda ()
-            (ibuffer-projectile-set-filter-groups)
-            (unless (eq ibuffer-sorting-mode 'alphabetic)
-              (ibuffer-do-sort-by-alphabetic))))
-
-;;___(setq +format-with-lsp nil)
-(setq-default indent-tabs-mode nil)
+(defun my/ibuffer-setup ()
+  (when (fboundp 'ibuffer-projectile-set-filter-groups)
+    (ibuffer-projectile-set-filter-groups))
+  (unless (eq ibuffer-sorting-mode 'alphabetic)
+    (ibuffer-do-sort-by-alphabetic)))
+(add-hook 'ibuffer-hook #'my/ibuffer-setup)
 
 ;; add spacing between windows
 (modify-all-frames-parameters
@@ -122,33 +103,26 @@
 
 ;;____________________________________________________________
 ;; org configs
-(setq org-directory "~/org/"
-      org-roam-directory (file-name-concat org-directory "org-roam/")
-      org-roam-db-location (file-name-concat org-directory ".org-roam.db")
-      org-roam-dailies-directory (file-name-concat org-directory "journal/")
-      org-archive-location (file-name-concat org-directory ".archive/%s::")
-      org-agenda-files (list (file-name-concat org-directory "org-agenda")))
-
-(after! org
-  (setq org-startup-folded 'show2levels
-        org-hide-emphasis-markers t
-        org-startup-folded t
-        org-agenda-timegrid-use-ampm 1 ;; Use 12-hour clock instead of 24-hour in agenda view
-        org-ellipsis " [...] "
-        org-capture-templates
-        '(("t" "todo" entry (file+headline "todo.org" "Inbox")
-           "* [ ] %?\n%i\n%a"
-           :prepend t)
-          ("d" "deadline" entry (file+headline "todo.org" "Inbox")
-           "* [ ] %?\nDEADLINE: <%(org-read-date)>\n\n%i\n%a"
-           :prepend t)
-          ("s" "schedule" entry (file+headline "todo.org" "Inbox")
-           "* [ ] %?\nSCHEDULED: <%(org-read-date)>\n\n%i\n%a"
-           :prepend t)
-          ("c" "check out later" entry (file+headline "todo.org" "Check out later")
-           "* [ ] %?\n%i\n%a"
-           :prepend t)
-          )))
+(use-package! org
+  :custom
+  (org-directory "~/org/")
+  (org-archive-location (file-name-concat org-directory ".archive/%s::"))
+  (org-agenda-files (list (file-name-concat org-directory "org-agenda")))
+  (org-startup-folded t)
+  (org-agenda-timegrid-use-ampm 1) ;; Use 12-hour clock instead of 24-hour in agenda view
+  (org-capture-templates
+   '(("t" "todo" entry (file+headline "todo.org" "Inbox")
+      "* [ ] %?\n%i\n%a"
+      :prepend t)
+     ("d" "deadline" entry (file+headline "todo.org" "Inbox")
+      "* [ ] %?\nDEADLINE: <%(org-read-date)>\n\n%i\n%a"
+      :prepend t)
+     ("s" "schedule" entry (file+headline "todo.org" "Inbox")
+      "* [ ] %?\nSCHEDULED: <%(org-read-date)>\n\n%i\n%a"
+      :prepend t)
+     ("c" "check out later" entry (file+headline "todo.org" "Check out later")
+      "* [ ] %?\n%i\n%a"
+      :prepend t))))
 
 ;; enable auto fill for org
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -156,53 +130,46 @@
 
 ;;____________________________________________________________
 ;; org-roam configs
-(after! org-roam
-  (org-roam-db-sync)
-  (setq org-roam-db-autosync-mode t
-        org-roam-node-display-template
-        (concat "${title:*} "
-                (propertize "${tags:10}" 'face 'org-tag))))
+(use-package! org-roam
+  :custom
+  (org-roam-directory (file-name-concat org-directory "org-roam/"))
+  (org-roam-db-location (file-name-concat org-directory ".org-roam.db"))
+  (org-roam-dailies-directory (file-name-concat org-directory "journal/"))
+  (org-roam-node-display-template
+   (concat "${title:*} "
+           (propertize "${tags:10}" 'face 'org-tag)))
+  :config
+  (org-roam-db-autosync-mode)
+  (org-roam-db-sync))
 
 ;;____________________________________________________________
 ;; org-modern
 (use-package! org-modern
   :hook (org-mode . org-modern-mode)
-  :config
-  (setq
-   ;; Edit settings
-   org-modern-star 'replace ;; round bullet points
-   org-auto-align-tags nil
-   org-tags-column 0
-   org-fold-catch-invisible-edits 'show-and-error
-   org-special-ctrl-a/e t
-   org-insert-heading-respect-content t
+  :custom
+  ;; Edit settings
+  (org-modern-star 'replace) ;; round bullet points
+  (org-auto-align-tags nil)
+  (org-tags-column 0)
+  (org-fold-catch-invisible-edits 'show-and-error)
+  (org-special-ctrl-a/e t)
+  (org-insert-heading-respect-content t)
 
-   ;; Org styling, hide markup etc.
-   org-hide-emphasis-markers t
-   org-pretty-entities t
-   org-ellipsis "…"
+  ;; Org styling, hide markup etc.
+  (org-hide-emphasis-markers t)
+  (org-pretty-entities t)
+  (org-ellipsis "…")
 
-   ;; Agenda styling
-   org-agenda-tags-column 0
-   org-agenda-block-separator ?─
-   org-agenda-time-grid
+  ;; Agenda styling
+  (org-agenda-tags-column 0)
+  (org-agenda-block-separator ?─)
+  (org-agenda-time-grid
    '((daily today require-timed)
      (800 1000 1200 1400 1600 1800 2000)
-     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
-   ))
+     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")))
 
 ;;____________________________________________________________
-;; terraform lsp
-(add-hook! 'terraform-mode-hook #'lsp)
-(setq lsp-disabled-clients '(tfls)) ; go with the official Hashicorp's language server
-(setq lsp-terraform-ls-enable-show-reference t)
-(setq lsp-semantic-tokens-enable t)
-(setq lsp-semantic-tokens-honor-refresh-requests t)
-(setq lsp-enable-links t)
-(setq lsp-terraform-ls-prefill-required-fields t)
-
-;;____________________________________________________________
-;; accept completion from copilot and fallback to company
+;; accept completion from copilot
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :config
@@ -235,34 +202,6 @@
    (t
     (backward-delete-char 1))))
 
-;; Browse repo in browser
-(defun my/browse-repo()
-  (interactive)
-  (browse-url
-   (let
-       ((rev (magit-rev-abbrev "HEAD"))
-        (repo (forge-get-repository 'stub))
-        (file (magit-file-relative-name buffer-file-name))
-        (highlight
-         (if
-             (use-region-p)
-             (let ((l1 (line-number-at-pos (region-beginning)))
-                   (l2 (line-number-at-pos (- (region-end) 1))))
-               (format "#L%d-L%d" l1 l2))
-           ""
-           )))
-     (forge--format repo (if file
-                             "https://%h/%o/%n/blob/%r/%f%L"
-                           "https://%h/%o/%n/blob/%r")
-                    `((?r . ,rev) (?f . ,file) (?L . ,highlight))))))
-
-(setq lsp-clients-clangd-args
-      '("-j=3"
-        "--background-index"
-        "--clang-tidy"
-        "--completion-style=detailed"
-        "--header-insertion=never"
-        "--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
 ;;____________________________________________________________
@@ -270,14 +209,10 @@
 (defun my/mark-symbol-at-point ()
   (interactive)
   (unless (region-active-p)
-    (let (bounds pos1 pos2)
-      (setq bounds (bounds-of-thing-at-point 'symbol))
-      (setq pos1 (car bounds))
-      (setq pos2 (cdr bounds))
-      (goto-char pos1)
-      (push-mark pos1 t t)
-      (goto-char pos2)
-      (setq transient-mark-mode  (cons 'only transient-mark-mode)))))
+    (when-let ((bounds (bounds-of-thing-at-point 'symbol)))
+      (goto-char (car bounds))
+      (push-mark (car bounds) t t)
+      (goto-char (cdr bounds)))))
 
 (after! (:and treemacs ace-window)
   (setq aw-ignored-buffers (delq 'treemacs-mode aw-ignored-buffers)))
@@ -286,33 +221,30 @@
 ;; load key bindings
 (load-file "~/.doom.d/keybinding.el")
 
-;; add cue-mode to lsp
 (use-package! lsp-mode
   :commands (lsp lsp-deferred)
-  :init
-  (with-eval-after-load 'lsp-mode
-    (add-to-list 'lsp-language-id-configuration '(cue-mode . "cue"))
-    (lsp-register-client (make-lsp-client
-                          :new-connection (lsp-stdio-connection (list "cue" "lsp" "serve"))
-                          :activation-fn (lsp-activate-on "cue")
-                          :server-id 'cuelsp))
-    )
   :hook ((cue-mode . lsp-deferred))
-  )
-
-(after! lsp-mode
-  (setq lsp-headerline-breadcrumb-enable t
-        lsp-headerline-breadcrumb-icons-enable t
-        lsp-headerline-breadcrumb-segments '(project file symbols)))
+  :config
+  (setq lsp-headerline-breadcrumb-enable t)
+  (add-to-list 'lsp-language-id-configuration '(cue-mode . "cue"))
+  (lsp-register-client (make-lsp-client
+                        :new-connection (lsp-stdio-connection (list "cue" "lsp" "serve"))
+                        :activation-fn (lsp-activate-on "cue")
+                        :server-id 'cuelsp)))
 
 ;; enable magit-todos mode
 (use-package! magit-todos
   :after magit
   :config (magit-todos-mode 1))
 
-;; enable breadcrumb mode
-(use-package! breadcrumb)
-
-(require 'acp)
-(require 'agent-shell)
-
+(use-package! agent-shell
+  :custom
+  (agent-shell-file-completion-enabled t)
+  (agent-shell-show-welcome-message nil)
+  ;; (agent-shell-prefer-viewport-interaction t)
+  (agent-shell-display-action
+   '((display-buffer-reuse-window display-buffer-pop-up-frame)
+     ;; (inhibit-switch-frame . t)
+     (reusable-frames . visible)))
+  :config
+  (setq agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)))
