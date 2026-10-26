@@ -225,6 +225,7 @@
   :commands (lsp lsp-deferred)
   :hook ((cue-mode . lsp-deferred))
   :config
+  (put 'lsp-go-build-flags 'safe-local-variable #'vectorp) ; trust lsp-go-build-flags
   (setq lsp-headerline-breadcrumb-enable t)
   (add-to-list 'lsp-language-id-configuration '(cue-mode . "cue"))
   (lsp-register-client (make-lsp-client
