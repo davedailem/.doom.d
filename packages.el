@@ -57,6 +57,7 @@
 (package! breadcrumb)
 (package! polymode)
 (package! poly-markdown)
+(package! just-mode)
 ;; AI packages
 ;; ------------
 (package! copilot

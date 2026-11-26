@@ -247,5 +247,11 @@
    '((display-buffer-reuse-window display-buffer-pop-up-frame)
      ;; (inhibit-switch-frame . t)
      (reusable-frames . visible)))
+  (agent-shell-antigravity-acp-command '("agy" "acp"))
   :config
-  (setq agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)))
+  (setq agent-shell-antigravity-authentication (agent-shell-antigravity-make-authentication :login t)
+        agent-shell-preferred-agent-config (agent-shell-antigravity-make-agent-config)))
+
+;;____________________________________________________________
+(setq epa-pinentry-mode 'loopback)
+
